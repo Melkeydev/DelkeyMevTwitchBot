@@ -40,8 +40,6 @@ class Bot(commands.Bot):
     #     print(tags)
 
 
-    # async def event_raw_data(self, data):
-    #     print(data)
 
     #Discord Command
     @commands.command(name='discord')
