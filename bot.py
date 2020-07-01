@@ -29,15 +29,6 @@ class Bot(commands.Bot):
         # if '' in ctx.content.casefold():
         #     await ctx.channel.send(f"Hi, @{ctx.author.name}!")
 
-    #Trigger upon new follower
-
-    #Trigger upon new subscriber
-    # async def event_usernotice_subscription(self, metadata):
-    #     print(metadata)
-
-    # async def event_raw_usernotice(self, channel, tags):
-    #     print(channel)
-    #     print(tags)
 
 
 
@@ -71,6 +62,14 @@ class Bot(commands.Bot):
     async def whoami(self,ctx):
         await ctx.send(f"Melkey is a dudebroham who is learning WebDev. He is a Data Scientist, and started with Python. He first started coding in 2018, making excel sheets cleaner. Melkey is also purusing his Master's in AI, with his work focusing on person detection and tracking")
 
+    #Shoutout Commands
+    @commands.command(name="so")
+    async def shoutout(self, ctx, username:str) -> None:
+        print(ctx.author.badges)
+        print(ctx.author.name)
+        print(ctx.channel)
+        if ctx.author.is_mod == 1:
+            await ctx.send(f'A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}')
 
 bot = Bot()
 bot.run()
