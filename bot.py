@@ -40,22 +40,29 @@ class Bot(commands.Bot):
     #Current project
     @commands.command(name='project')
     async def project(self,ctx):
-        await ctx.send(f'Melkey is currently working on an NBA Fantasy Category Optimizer application. Made using the MERN stack and AntDesign')
+        await ctx.send(f'I am currently working on learning websockets, Type Script for the new app: Snackchat')
 
     #Editor
     @commands.command(name='editor')
     async def editor(self, ctx):
-        await ctx.send(f'Melkey is currently using VSCode as the Editor')    
+        await ctx.send(f'Melkey is currently using NVIM as the Editor')    
 
     #Current Theme in Editor
     @commands.command(name="theme")
     async def theme(self,ctx):
-        await ctx.send(f'The current theme is Just Black - but Melkey modified it slightly and changed some of the CSS')
+        await ctx.send(f'The current theme is something i forget')
+
 
     #GitHub Link
     @commands.command(name="github")
     async def github(self,ctx):
         await ctx.send(f"Melkey's GitHub can be found here: https://github.com/Amokstakov")
+
+
+    #config
+    @commands.command(name="config")
+    async def github(self,ctx):
+        await ctx.send(f"Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig)
     
     #Who am I 
     @commands.command(name="whoami")
