@@ -62,7 +62,7 @@ class Bot(commands.Bot):
     #config
     @commands.command(name="config")
     async def github(self,ctx):
-        await ctx.send(f"Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig)
+        await ctx.send(f"Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig")
     
     #Who am I 
     @commands.command(name="whoami")
