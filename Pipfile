@@ -7,8 +7,6 @@ verify_ssl = true
 
 [packages]
 twitchio = "*"
-selenium = "*"
-webdriver-manager = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

@@ -5,14 +5,14 @@ from twitchio.ext import commands
 
 
 class Bot(commands.Bot):
-    
     def __init__(self):
-        super().__init__(irc_token=os.environ['TMI_TOKEN'],
-    client_id=os.environ['CLIENT_ID'],
-    nick=os.environ['BOT_NICK'],
-    prefix=os.environ['BOT_PREFIX'],
-    initial_channels=[os.environ['CHANNEL']])
-
+        super().__init__(
+            irc_token=os.environ["TMI_TOKEN"],
+            client_id=os.environ["CLIENT_ID"],
+            nick=os.environ["BOT_NICK"],
+            prefix=os.environ["BOT_PREFIX"],
+            initial_channels=[os.environ["CHANNEL"]],
+        )   
 
     #start Bot
     async def event_ready(self):
