@@ -1,6 +1,6 @@
 import os
+
 import twitchio
-#from selenium import webdriver
 from twitchio.ext import commands
 
 
@@ -12,72 +12,78 @@ class Bot(commands.Bot):
             nick=os.environ["BOT_NICK"],
             prefix=os.environ["BOT_PREFIX"],
             initial_channels=[os.environ["CHANNEL"]],
+<<<<<<< HEAD
         )   
 
     #start Bot
+=======
+        )
+
+    # start Bot
+>>>>>>> 147df362d9459c45a34c1675d9bdf4f639aa3c9c
     async def event_ready(self):
-        print(f'Ready | {self.nick}')
+        print(f"Ready | {self.nick}")
 
-
-    #Triggers for particular events
-    async def event_message(self,msg):
-        # print(msg.author.name)
+    # Triggers for particular events
+    async def event_message(self, msg):
         ctx = await self.get_context(msg, cls=twitchio.Context)
-
         await self.handle_commands(msg, ctx=ctx)
 
-        # if '' in ctx.content.casefold():
-        #     await ctx.channel.send(f"Hi, @{ctx.author.name}!")
-
-
-
-
-    #Discord Command
-    @commands.command(name='discord')
+    # Discord Command
+    @commands.command(name="discord")
     async def discord(self, ctx):
-        await ctx.send(f'Join our awesome Discord channel! - https://discord.gg/HHZMSCu')
+        await ctx.send("Join our awesome Discord channel! - https://discord.gg/HHZMSCu")
 
-    #Current project
-    @commands.command(name='project')
-    async def project(self,ctx):
-        await ctx.send(f'I am currently working on learning websockets, Type Script for the new app: Snackchat')
+    # Current project
+    @commands.command(name="project")
+    async def project(self, ctx):
+        await ctx.send(
+            "I am currently working on learning websockets, Type Script for the new app: Snackchat"
+        )
 
-    #Editor
-    @commands.command(name='editor')
+    # Editor
+    @commands.command(name="editor")
     async def editor(self, ctx):
-        await ctx.send(f'Melkey is currently using NVIM as the Editor')    
+        await ctx.send("Melkey is currently using NVIM as the Editor")
 
-    #Current Theme in Editor
+    # Current Theme in Editor
     @commands.command(name="theme")
-    async def theme(self,ctx):
-        await ctx.send(f'The current theme is something i forget')
+    async def theme(self, ctx):
+        await ctx.send("The current theme is something i forget")
 
-
-    #GitHub Link
+    # GitHub Link
     @commands.command(name="github")
-    async def github(self,ctx):
-        await ctx.send(f"Melkey's GitHub can be found here: https://github.com/Amokstakov")
+    async def github(self, ctx):
+        await ctx.send(
+            "Melkey's GitHub can be found here: https://github.com/Amokstakov"
+        )
 
-
-    #config
+    # config
     @commands.command(name="config")
-    async def github(self,ctx):
-        await ctx.send(f"Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig")
-    
-    #Who am I 
-    @commands.command(name="whoami")
-    async def whoami(self,ctx):
-        await ctx.send(f"Melkey is a dudebroham who is learning WebDev. He is a Data Scientist, and started with Python. He first started coding in 2018, making excel sheets cleaner. Melkey is also purusing his Master's in AI, with his work focusing on person detection and tracking")
+    async def githubdot(self, ctx):
+        await ctx.send(
+            "Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig"
+        )
 
-    #Shoutout Commands
+    # Who am I
+    @commands.command(name="whoami")
+    async def whoami(self, ctx):
+        await ctx.send(
+            "Melkey is a dudebroham who is learning WebDev. He is a Data Scientist, and started with Python. He first started coding in 2018, making excel sheets cleaner. Melkey is also purusing his Master's in AI, with his work focusing on person detection and tracking"
+        )
+
+    # Shoutout Commands
     @commands.command(name="so")
-    async def shoutout(self, ctx, username:str) -> None:
+    async def shoutout(self, ctx, username: str) -> None:
         print(ctx.author.badges)
         print(ctx.author.name)
         print(ctx.channel)
         if ctx.author.is_mod == 1:
-            await ctx.send(f'A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}')
+            await ctx.send(
+                f"A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}"
+            )
 
-bot = Bot()
-bot.run()
-    
+
+if __name__ == "__main__":
+    bot = Bot()
+    bot.run()
