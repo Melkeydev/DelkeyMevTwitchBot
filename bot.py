@@ -11,16 +11,9 @@ class Bot(commands.Bot):
             client_id=os.environ["CLIENT_ID"],
             nick=os.environ["BOT_NICK"],
             prefix=os.environ["BOT_PREFIX"],
-            initial_channels=[os.environ["CHANNEL"]],
-<<<<<<< HEAD
-        )   
+            initial_channels=[os.environ["CHANNEL"]]
+        ),
 
-    #start Bot
-=======
-        )
-
-    # start Bot
->>>>>>> 147df362d9459c45a34c1675d9bdf4f639aa3c9c
     async def event_ready(self):
         print(f"Ready | {self.nick}")
 
@@ -30,15 +23,36 @@ class Bot(commands.Bot):
         await self.handle_commands(msg, ctx=ctx)
 
     # Discord Command
+    # @commands.command(name="cmd")
+    # async def discord(self, ctx):
+        # await ctx.send("The currenty list of commands: !discord, !project, !TJ, !editor, !theme,!GOAT, !config, !github")
+
+    # Discord Command
     @commands.command(name="discord")
     async def discord(self, ctx):
         await ctx.send("Join our awesome Discord channel! - https://discord.gg/HHZMSCu")
+
+    @commands.command(name="commands")
+    async def test(self, ctx):
+        await ctx.send("The current list of commands: !discord, !project, !TJ, !editor, !theme, !GOAT, !config, !github")
+
+    @commands.command(name="TJ")
+    async def TJ(self, ctx):
+        await ctx.send("Is my actual brother, thats totally not a lie.")
+
+    @commands.command(name="beginbot")
+    async def begingbot(self, ctx):
+        await ctx.send("My favorite Twitch Scene is him in his Hottub")
+
+    @commands.command(name="keyboard")
+    async def keyboard(self, ctx):
+        await ctx.send("Glorious GMMK Ice White with MX Browns from pcgamingrace.com SPONSORED BY @nyxiative")
 
     # Current project
     @commands.command(name="project")
     async def project(self, ctx):
         await ctx.send(
-            "I am currently working on learning websockets, Type Script for the new app: Snackchat"
+            "I am currently working on dockerizing and deploying my YouTube Downloader for my Russian Parents ye"
         )
 
     # Editor
@@ -49,7 +63,12 @@ class Bot(commands.Bot):
     # Current Theme in Editor
     @commands.command(name="theme")
     async def theme(self, ctx):
-        await ctx.send("The current theme is something i forget")
+        await ctx.send("NVIM - SpaceCamp")
+
+    # Current Theme in Editor
+    @commands.command(name="GOAT")
+    async def theme(self, ctx):
+        await ctx.send("ThePrimeagen is the GOAT")
 
     # GitHub Link
     @commands.command(name="github")
@@ -65,14 +84,8 @@ class Bot(commands.Bot):
             "Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig"
         )
 
-    # Who am I
-    @commands.command(name="whoami")
-    async def whoami(self, ctx):
-        await ctx.send(
-            "Melkey is a dudebroham who is learning WebDev. He is a Data Scientist, and started with Python. He first started coding in 2018, making excel sheets cleaner. Melkey is also purusing his Master's in AI, with his work focusing on person detection and tracking"
-        )
-
     # Shoutout Commands
+
     @commands.command(name="so")
     async def shoutout(self, ctx, username: str) -> None:
         print(ctx.author.badges)
