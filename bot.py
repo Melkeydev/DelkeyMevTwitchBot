@@ -46,7 +46,7 @@ class Bot(commands.Bot):
 
     @commands.command(name="keyboard")
     async def keyboard(self, ctx):
-        await ctx.send("Glorious GMMK Ice White with MX Browns from pcgamingrace.com SPONSORED BY @nyxiative")
+        await ctx.send("Glorious GMMK Ice White with Glorious Panda switches from pcgamingrace.com SPONSORED BY @nyxiative")
 
     # Current project
     @commands.command(name="project")
