@@ -34,7 +34,11 @@ class Bot(commands.Bot):
 
     @commands.command(name="commands")
     async def test(self, ctx):
-        await ctx.send("The current list of commands: !discord, !project, !TJ, !editor, !theme, !GOAT, !config, !github")
+        await ctx.send("The current list of commands: !discord, !project, !TJ, !editor, !theme, !GOAT, !config, !github, !height")
+
+    @commands.command(name="height")
+    async def height(self, ctx):
+        await ctx.send("MelkeyDev is 7'8\"")
 
     @commands.command(name="TJ")
     async def TJ(self, ctx):
