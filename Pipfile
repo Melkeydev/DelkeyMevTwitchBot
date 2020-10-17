@@ -8,6 +8,7 @@ autopep8 = "*"
 
 [packages]
 twitchio = "*"
+aiohttp = "*"
 
 [requires]
 python_version = "3.8"

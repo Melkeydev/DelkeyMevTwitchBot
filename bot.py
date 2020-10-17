@@ -1,9 +1,42 @@
 import os
 
+import aiohttp
 import twitchio
 from twitchio.ext import commands
 
+aio_session = aiohttp.ClientSession()
 
+uwus = [
+    'uWu',
+    'oWo',
+    'UWU :3',
+    'UwU',
+    ':3',
+    'nyxiative\'s mouse pad',
+    '(ᵘʷᵘ)',
+    '(ᵘﻌᵘ)',
+    '˯˽˯',
+    '(◡ ω ◡)',
+    '(◡ u ◡)',
+    '(◡ w ◡)',
+    '(◡ ሠ ◡)',
+    '(˘ω˘)',
+    '(⑅˘꒳˘)',
+    '(˘ᵕ˘)',
+    '(˘ሠ˘)',
+    '(˘³˘)',
+    '(˘ε˘)',
+    '(´˘`)',
+    '(´^`)',
+    '(˘ ^ ˘)',
+    '( ᴜ ω ᴜ )',
+    '( ´ω` )۶',
+    '(„ᵕᴗᵕ„)',
+    '(*ฅ́˘ฅ̀*) ',
+    '(ㅅ ˘ )',
+    '(⑅˘˘)',
+    '( ｡ᵘ ᵕ ᵘ ｡)'
+]
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(
@@ -15,11 +48,19 @@ class Bot(commands.Bot):
         ),
 
     async def event_ready(self):
-        print(f"Ready | {self.nick}")
+        print(f"Uwu Melkey Senpai | {self.nick}")
 
     # Triggers for particular events
     async def event_message(self, msg):
         ctx = await self.get_context(msg, cls=twitchio.Context)
+        #rudamentary weab detection
+        trigger_uwu = any(ele in str(msg.content) for ele in uwus)
+        #BRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+        trigger_uwu_lower = any(ele in str(msg.content.lower()) for ele in uwus)
+        if trigger_uwu or trigger_uwu_lower:
+            if msg.author.name != self.nick:
+                await msg.channel.send(random.choice(uwus))
+
         await self.handle_commands(msg, ctx=ctx)
 
     # Discord Command
@@ -82,7 +123,7 @@ class Bot(commands.Bot):
         )
 
     # config
-    @commands.command(name="config")
+    @commands.command(name="config", aliases=["rc", "dotfiles", "dopeassconfigfile"])
     async def githubdot(self, ctx):
         await ctx.send(
             "Melkey's config can be found here: https://github.com/Amokstakov/NvimConfig"
@@ -99,6 +140,48 @@ class Bot(commands.Bot):
             await ctx.send(
                 f"A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}"
             )
+
+
+    #Begin MDD
+
+    #just a standard bot command, nothing to see here.
+    @commands.command(name="bestmod", aliases=["worstmod"])
+    async def atro_command(self, ctx):
+        await ctx.send("Astro, obviously")
+
+    #followage, gets the length of time that a given user has been following the channel
+    @commands.command(name="followage", aliases=["followtime", "simptime"])
+    async def followage(self, ctx):
+        url = f'https://api.2g.be/twitch/followage/{ctx.channel.name}/{ctx.author.name}?format=mwdhms'
+        async with aio_session.get(url) as response:
+            data = await response.text()
+        await ctx.send(str(data))
+
+    #this is useful for mobile viewers as twitch has yet to get their shit together.
+    @commands.command(name="uptime")
+    async def uptime_m8(self, ctx):
+        url = f'https://beta.decapi.me/twitch/uptime/{ctx.channel.name}'
+        async with aio_session.get(url) as response:
+            data = await response.text()
+        await ctx.send(f'Current uptime for {ctx.channel.name} is {data}')
+
+    #this will return a randomly generated insult
+    @commands.command(name="insult" aliases=["femdom"])
+    async def insult_command(self, ctx):
+        url ='https://insult.mattbas.org/api/insult'
+        async with aio_session.get(url) as response:
+            data = await response.text()
+        await ctx.send(f"{data} {ctx.author.name}")
+
+    #this will return a randomly generated compliment, how nice.
+    @commands.command(name="compliment")
+    async def compliment_command(self, ctx):
+        url = 'https://complimentr.com/api'
+        async with aio_session.get(url) as response:
+            data = await response.json()
+            output = str(data['compliment'])
+        await ctx.send(f'{output} {ctx.author.name}')
+
 
 
 if __name__ == "__main__":
