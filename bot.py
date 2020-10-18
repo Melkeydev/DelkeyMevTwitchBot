@@ -75,7 +75,14 @@ class Bot(commands.Bot):
 
     @commands.command(name="commands")
     async def test(self, ctx):
-        await ctx.send("The current list of commands: !discord, !project, !TJ, !editor, !theme, !GOAT, !config, !github, !height")
+        commands = ''
+        for k, v in self.commands.items():
+            commands += f"!{k}"
+            if v.aliases:
+                aliases = ", ".join(f"!{a}" for a in v.aliases)
+                commands += f" ({aliases})"
+            commands += ", "
+        await ctx.send(f"The current list of commands: {commands}")
 
     @commands.command(name="height")
     async def height(self, ctx):
@@ -133,9 +140,6 @@ class Bot(commands.Bot):
 
     @commands.command(name="so")
     async def shoutout(self, ctx, username: str) -> None:
-        print(ctx.author.badges)
-        print(ctx.author.name)
-        print(ctx.channel)
         if ctx.author.is_mod == 1:
             await ctx.send(
                 f"A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}"
@@ -145,9 +149,13 @@ class Bot(commands.Bot):
     #Begin MDD
 
     #just a standard bot command, nothing to see here.
-    @commands.command(name="bestmod", aliases=["worstmod"])
-    async def atro_command(self, ctx):
-        await ctx.send("Astro, obviously")
+    @commands.command(name="bestmod")
+    async def bestmod(self, ctx):
+        await ctx.send("Andrew, obviously")
+
+    @commands.command(name="worstmod")
+    async def worstmod(self, ctx):
+        await ctx.send("bk, obviously")
 
     #followage, gets the length of time that a given user has been following the channel
     @commands.command(name="followage", aliases=["followtime", "simptime"])
@@ -166,7 +174,7 @@ class Bot(commands.Bot):
         await ctx.send(f'Current uptime for {ctx.channel.name} is {data}')
 
     #this will return a randomly generated insult
-    @commands.command(name="insult" aliases=["femdom"])
+    @commands.command(name="insult", aliases=["femdom"])
     async def insult_command(self, ctx):
         url ='https://insult.mattbas.org/api/insult'
         async with aio_session.get(url) as response:
