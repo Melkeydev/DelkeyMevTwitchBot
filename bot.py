@@ -173,7 +173,7 @@ class Bot(commands.Bot):
         await ctx.send(f'Current uptime for {ctx.channel.name} is {data}')
 
     #this will return a randomly generated insult
-    @commands.command(name="insult" aliases=["femdom"])
+    @commands.command(name="insult", aliases=["femdom"])
     async def insult_command(self, ctx):
         url ='https://insult.mattbas.org/api/insult'
         async with aio_session.get(url) as response:
