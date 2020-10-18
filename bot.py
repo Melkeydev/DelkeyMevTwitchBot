@@ -140,9 +140,6 @@ class Bot(commands.Bot):
 
     @commands.command(name="so")
     async def shoutout(self, ctx, username: str) -> None:
-        print(ctx.author.badges)
-        print(ctx.author.name)
-        print(ctx.channel)
         if ctx.author.is_mod == 1:
             await ctx.send(
                 f"A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}"
@@ -152,9 +149,13 @@ class Bot(commands.Bot):
     #Begin MDD
 
     #just a standard bot command, nothing to see here.
-    @commands.command(name="bestmod", aliases=["worstmod"])
-    async def atro_command(self, ctx):
-        await ctx.send("Astro, obviously")
+    @commands.command(name="bestmod")
+    async def bestmod(self, ctx):
+        await ctx.send("Andrew, obviously")
+
+    @commands.command(name="worstmod")
+    async def worstmod(self, ctx):
+        await ctx.send("bk, obviously")
 
     #followage, gets the length of time that a given user has been following the channel
     @commands.command(name="followage", aliases=["followtime", "simptime"])
