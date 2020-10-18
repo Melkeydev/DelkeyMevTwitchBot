@@ -75,7 +75,14 @@ class Bot(commands.Bot):
 
     @commands.command(name="commands")
     async def test(self, ctx):
-        await ctx.send("The current list of commands: !discord, !project, !TJ, !editor, !theme, !GOAT, !config, !github, !height")
+        commands = ''
+        for k, v in self.commands.items():
+            commands += f"!{k}"
+            if v.aliases:
+                aliases = ", ".join(f"!{a}" for a in v.aliases)
+                commands += f" ({aliases})"
+            commands += ", "
+        await ctx.send(f"The current list of commands: {commands}")
 
     @commands.command(name="height")
     async def height(self, ctx):
