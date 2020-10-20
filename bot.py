@@ -2,6 +2,7 @@ import os
 
 import aiohttp
 import twitchio
+import temmytranslator
 from twitchio.ext import commands
 
 aio_session = aiohttp.ClientSession()
@@ -152,6 +153,10 @@ class Bot(commands.Bot):
     @commands.command(name="bestmod")
     async def bestmod(self, ctx):
         await ctx.send("Andrew, obviously")
+        
+    @commands.command(name="real-bestmod")
+    async def bestmod(self, ctx):
+        await ctx.send("astro, obviously")
 
     @commands.command(name="worstmod")
     async def worstmod(self, ctx):
@@ -174,7 +179,7 @@ class Bot(commands.Bot):
         await ctx.send(f'Current uptime for {ctx.channel.name} is {data}')
 
     #this will return a randomly generated insult
-    @commands.command(name="insult", aliases=["femdom"])
+    @commands.command(name="insult", aliases=["femdom","make-me-cry"])
     async def insult_command(self, ctx):
         url ='https://insult.mattbas.org/api/insult'
         async with aio_session.get(url) as response:
@@ -191,6 +196,15 @@ class Bot(commands.Bot):
         await ctx.send(f'{output} {ctx.author.name}')
 
 
+    @commands.command(name="temmyifiy")
+    async def temmyify(self, ctx):
+        await ctx.send(temmytranslator.temmytranslate(ctx.content))
+        
+    @commands.command(name="hammond")
+    async def hammond(self, ctx):
+        await ctx.send("YOU IDIOT!")
+    
+    
 
 if __name__ == "__main__":
     bot = Bot()
