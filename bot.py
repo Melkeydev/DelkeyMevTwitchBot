@@ -202,7 +202,7 @@ class Bot(commands.Bot):
         
     @commands.command(name="hammond")
     async def hammond(self, ctx):
-        await ctx.send("YOU IDIOT!")
+        await ctx.send("YOU IDIOT!") 
     
     
 
