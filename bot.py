@@ -2,42 +2,12 @@ import os
 
 import aiohttp
 import twitchio
+#jfc jay include random if you're going to call random.
 import random
+from responses import uwus, mods
 from twitchio.ext import commands
 
 aio_session = aiohttp.ClientSession()
-
-uwus = [
-    'uWu',
-    'oWo',
-    'UWU :3',
-    'UwU',
-    ':3',
-    'nyxiative\'s mouse pad',
-    '(ᵘʷᵘ)',
-    '(ᵘﻌᵘ)',
-    '˯˽˯',
-    '(◡ ω ◡)',
-    '(◡ u ◡)',
-    '(◡ w ◡)',
-    '(◡ ሠ ◡)',
-    '(˘ω˘)',
-    '(⑅˘꒳˘)',
-    '(˘ᵕ˘)',
-    '(˘ሠ˘)',
-    '(˘³˘)',
-    '(˘ε˘)',
-    '(´˘`)',
-    '(´^`)',
-    '(˘ ^ ˘)',
-    '( ᴜ ω ᴜ )',
-    '( ´ω` )۶',
-    '(„ᵕᴗᵕ„)',
-    '(*ฅ́˘ฅ̀*) ',
-    '(ㅅ ˘ )',
-    '(⑅˘˘)',
-    '( ｡ᵘ ᵕ ᵘ ｡)'
-]
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(
@@ -152,11 +122,16 @@ class Bot(commands.Bot):
     #just a standard bot command, nothing to see here.
     @commands.command(name="bestmod")
     async def bestmod(self, ctx):
-        await ctx.send("Andrew, obviously")
+        await ctx.send(random.choice(mods))
 
     @commands.command(name="worstmod")
     async def worstmod(self, ctx):
-        await ctx.send("bk, obviously")
+        await ctx.send(random.choice(mods))
+
+    #SHAME
+    @commands.command(name="bully")
+    async def bully_command(self, ctx):
+        await ctx.send("pronerd_jay is literal garbage")
 
     #followage, gets the length of time that a given user has been following the channel
     @commands.command(name="followage", aliases=["followtime", "simptime"])
