@@ -2,6 +2,7 @@ import os
 
 import aiohttp
 import twitchio
+import random
 from twitchio.ext import commands
 
 aio_session = aiohttp.ClientSession()
