@@ -1,6 +1,7 @@
 import os
 
 import aiohttp
+import json
 import twitchio
 #jfc jay include random if you're going to call random.
 import random
@@ -8,6 +9,28 @@ from responses import uwus, mods
 from twitchio.ext import commands
 
 aio_session = aiohttp.ClientSession()
+
+
+#this gets a random mod from the ones currently connected to chat.
+def get_random_mod():
+    mods = []
+    url = f'https://tmi.twitch.tv/group/user/melkeydev/chatters'
+    async with aio_session.get(url) as response:
+        data = await response.json()
+        mods.extend(data['chatters']['moderators']
+    return random.choice(mods)
+
+#tHiS iS fOr WoRsT mOdS
+def sponge_bob_case(message):
+    response =""
+    for idx in range(len(message)):
+        if not idx %2:
+            response = response + message[idx].upper()
+        else:
+            response = response + message[idx].lower()
+
+    return response
+
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(
@@ -116,17 +139,17 @@ class Bot(commands.Bot):
                 f"A big warm shoutout to the this person right here - show them some LOVE and FOLLOW, https://www.twitch.tv/{username}"
             )
 
-
     #Begin MDD
 
-    #just a standard bot command, nothing to see here.
     @commands.command(name="bestmod")
     async def bestmod(self, ctx):
-        await ctx.send(random.choice(mods))
+        best = get_random_mod()
+        await ctx.send(f'The most very bestestest mod is {best}')
 
     @commands.command(name="worstmod")
     async def worstmod(self, ctx):
-        await ctx.send(random.choice(mods))
+        worst = get_random_mod()
+        await ctx.send(sponge_bob_case(f'the most very bestestest mod is {worst}')
 
     #SHAME
     @commands.command(name="bully")

@@ -1,6 +1,4 @@
 
-#please add/edit to this.
-mods =['Astronuts', 'Nyxibae', 'bk, m8']
 #if you can't handle me at my uwu you dont deserve me at my owo - melkey, probably
 uwus = [
     'uWu',
