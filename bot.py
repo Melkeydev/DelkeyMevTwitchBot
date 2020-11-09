@@ -8,7 +8,7 @@ import random
 from responses import uwus
 from twitchio.ext import commands
 
-aio_session = aiohttp.ClientSession()
+global aio_session
 
 
 #this gets a random mod from the ones currently connected to chat.
@@ -43,6 +43,8 @@ class Bot(commands.Bot):
 
     async def event_ready(self):
         print(f"Uwu Melkey Senpai | {self.nick}")
+        global aio_session
+        aio_session = aiohttp.ClientSession()
 
     # Triggers for particular events
     async def event_message(self, msg):
