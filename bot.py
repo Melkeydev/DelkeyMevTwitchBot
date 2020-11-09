@@ -5,19 +5,19 @@ import json
 import twitchio
 #jfc jay include random if you're going to call random.
 import random
-from responses import uwus, mods
+from responses import uwus
 from twitchio.ext import commands
 
 aio_session = aiohttp.ClientSession()
 
 
 #this gets a random mod from the ones currently connected to chat.
-def get_random_mod():
+async def get_random_mod():
     mods = []
     url = f'https://tmi.twitch.tv/group/user/melkeydev/chatters'
     async with aio_session.get(url) as response:
         data = await response.json()
-        mods.extend(data['chatters']['moderators']
+        mods.extend(data['chatters']['moderators'])
     return random.choice(mods)
 
 #tHiS iS fOr WoRsT mOdS
@@ -143,12 +143,12 @@ class Bot(commands.Bot):
 
     @commands.command(name="bestmod")
     async def bestmod(self, ctx):
-        best = get_random_mod()
+        best = await get_random_mod()
         await ctx.send(f'The most very bestestest mod is {best}')
 
     @commands.command(name="worstmod")
     async def worstmod(self, ctx):
-        worst = get_random_mod()
+        worst = await get_random_mod()
         await ctx.send(sponge_bob_case(f'the most very bestestest mod is {worst}')
 
     #SHAME
